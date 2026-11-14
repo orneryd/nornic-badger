@@ -1,0 +1,12 @@
+[
+  {
+    "Shape": "documentation",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 4262325,
+    "EncodedBytes": 1481680,
+    "EncodeNS": 32198200,
+    "DecodeNS": 15284500,
+    "AllocBytes": 13952,
+    "DirectoryBytes": 2534077
+  }
+]

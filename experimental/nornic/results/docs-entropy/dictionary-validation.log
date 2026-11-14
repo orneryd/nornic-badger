@@ -1,0 +1,5 @@
+=== RUN   TestDocsEntropyExperiment
+    docs_entropy_test.go:407: documentation/dictionary-zstd input=4262325 encoded=1481680 disk=2534077
+--- PASS: TestDocsEntropyExperiment (1.90s)
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	2.819s

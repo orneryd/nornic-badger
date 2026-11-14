@@ -1,0 +1,52 @@
+=== RUN   TestDocsEntropyExperiment
+    docs_entropy_test.go:352: documentation/raw input=4380465 encoded=4380465 disk=3331506
+    docs_entropy_test.go:352: documentation/snappy input=4380465 encoded=2224834 disk=3330550
+    docs_entropy_test.go:352: documentation/zstd input=4380465 encoded=1607717 disk=2715640
+    docs_entropy_test.go:352: documentation/adaptive-zstd input=4380465 encoded=1608074 disk=2716001
+    docs_entropy_test.go:352: independent-hashes/raw input=1302528 encoded=1302528 disk=2409423
+    docs_entropy_test.go:352: independent-hashes/snappy input=1302528 encoded=1304118 disk=2411010
+    docs_entropy_test.go:352: independent-hashes/zstd input=1302528 encoded=1306980 disk=2413871
+    docs_entropy_test.go:352: independent-hashes/adaptive-zstd input=1302528 encoded=1302846 disk=2409736
+    docs_entropy_test.go:352: low-range/raw input=325632 encoded=325632 disk=1217868
+    docs_entropy_test.go:352: low-range/snappy input=325632 encoded=157530 disk=1150445
+    docs_entropy_test.go:352: low-range/zstd input=325632 encoded=38155 disk=1099662
+    docs_entropy_test.go:352: low-range/adaptive-zstd input=325632 encoded=38473 disk=1099960
+    docs_entropy_test.go:352: low-range/for input=325632 encoded=26712 disk=1086117
+    docs_entropy_test.go:352: low-range/mini-for input=325632 encoded=27984 disk=1086172
+    docs_entropy_test.go:352: low-range/delta-mini-for input=325632 encoded=33072 disk=1092336
+    docs_entropy_test.go:352: low-range/shuffle-zstd input=325632 encoded=31635 disk=1091594
+    docs_entropy_test.go:352: mixed-json/raw input=16355965 encoded=16355965 disk=4874342
+    docs_entropy_test.go:352: mixed-json/snappy input=16355965 encoded=3787891 disk=4860156
+    docs_entropy_test.go:352: mixed-json/zstd input=16355965 encoded=1753965 disk=2855769
+    docs_entropy_test.go:352: mixed-json/adaptive-zstd input=16355965 encoded=1754283 disk=2856090
+    docs_entropy_test.go:352: outliers/raw input=325632 encoded=325632 disk=1230516
+    docs_entropy_test.go:352: outliers/snappy input=325632 encoded=146796 disk=1156031
+    docs_entropy_test.go:352: outliers/zstd input=325632 encoded=53564 disk=1117295
+    docs_entropy_test.go:352: outliers/adaptive-zstd input=325632 encoded=53882 disk=1117499
+    docs_entropy_test.go:352: outliers/for input=325632 encoded=326872 disk=1226235
+    docs_entropy_test.go:352: outliers/mini-for input=325632 encoded=328144 disk=1227729
+    docs_entropy_test.go:352: outliers/delta-mini-for input=325632 encoded=331344 disk=1201947
+    docs_entropy_test.go:352: outliers/shuffle-zstd input=325632 encoded=57839 disk=1108697
+    docs_entropy_test.go:352: random-int64/raw input=325632 encoded=325632 disk=1406183
+    docs_entropy_test.go:352: random-int64/snappy input=325632 encoded=327222 disk=1407776
+    docs_entropy_test.go:352: random-int64/zstd input=325632 encoded=330402 disk=1410954
+    docs_entropy_test.go:352: random-int64/adaptive-zstd input=325632 encoded=325950 disk=1406504
+    docs_entropy_test.go:352: random-int64/for input=325632 encoded=331992 disk=1412546
+    docs_entropy_test.go:352: random-int64/mini-for input=325632 encoded=333264 disk=1413816
+    docs_entropy_test.go:352: random-int64/delta-mini-for input=325632 encoded=333264 disk=1413818
+    docs_entropy_test.go:352: random-int64/shuffle-zstd input=325632 encoded=330402 disk=1410947
+    docs_entropy_test.go:352: timestamps/raw input=325632 encoded=325632 disk=1168465
+    docs_entropy_test.go:352: timestamps/snappy input=325632 encoded=248358 disk=1135449
+    docs_entropy_test.go:352: timestamps/zstd input=325632 encoded=119568 disk=1085888
+    docs_entropy_test.go:352: timestamps/adaptive-zstd input=325632 encoded=119886 disk=1085929
+    docs_entropy_test.go:352: timestamps/for input=325632 encoded=143736 disk=1094868
+    docs_entropy_test.go:352: timestamps/mini-for input=325632 encoded=145008 disk=1095055
+    docs_entropy_test.go:352: timestamps/delta-mini-for input=325632 encoded=318000 disk=1094801
+    docs_entropy_test.go:352: timestamps/shuffle-zstd input=325632 encoded=112572 disk=1083571
+    docs_entropy_test.go:352: unique-paths/raw input=2939228 encoded=2939228 disk=1400343
+    docs_entropy_test.go:352: unique-paths/snappy input=2939228 encoded=299107 disk=1191427
+    docs_entropy_test.go:352: unique-paths/zstd input=2939228 encoded=90494 disk=1142164
+    docs_entropy_test.go:352: unique-paths/adaptive-zstd input=2939228 encoded=90812 disk=1142218
+--- PASS: TestDocsEntropyExperiment (80.33s)
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	81.243s

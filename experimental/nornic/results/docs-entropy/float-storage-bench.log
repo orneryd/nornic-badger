@@ -1,0 +1,12 @@
+goos: windows
+goarch: amd64
+pkg: github.com/dgraph-io/badger/v4/experimental/nornic
+cpu: Intel(R) Core(TM) i9-9900KF CPU @ 3.60GHz
+BenchmarkDocsFloatStorage/float-bits         	   55156	      6511 ns/op	5032.50 MB/s	       0 B/op	       0 allocs/op
+BenchmarkDocsFloatStorage/float-bits         	   55254	      6487 ns/op	5051.36 MB/s	       0 B/op	       0 allocs/op
+BenchmarkDocsFloatStorage/float-bits         	   55911	      6594 ns/op	4969.00 MB/s	       0 B/op	       0 allocs/op
+BenchmarkDocsFloatStorage/uint64-bits        	   57728	      6349 ns/op	5161.50 MB/s	       0 B/op	       0 allocs/op
+BenchmarkDocsFloatStorage/uint64-bits        	   57687	      6267 ns/op	5228.71 MB/s	       0 B/op	       0 allocs/op
+BenchmarkDocsFloatStorage/uint64-bits        	   57585	      6240 ns/op	5251.35 MB/s	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	3.514s

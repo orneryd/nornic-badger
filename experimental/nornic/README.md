@@ -59,3 +59,12 @@ go test ./experimental/nornic -run '^$' -bench . -benchmem -benchtime=300ms -cou
 ```
 
 Keep benchmarks separate from competing test/fuzz activity. Go's workload-specific byte throughput is decoded logical bytes, not storage-device throughput. Correctness includes signed extrema, all packed widths, zero-length/absent fields, malformed/truncated formats, callback errors, cancellation, borrowed-buffer use and consistent Badger snapshot selection.
+
+## Documentation-seeded experiments
+
+The [mixed-entropy report](DOCS-ENTROPY-REPORT.md) compares raw, Snappy, Zstd,
+held-out-document dictionaries, sampled raw fallback, mini-block and patched
+packing, anchored deltas and reversible float-bit transforms. It includes actual
+Badger footprint/reopen checks and allocation receipts. All additional candidates
+remain in opt-in test code; they do not change Badger's table format or NornicDB.
+See [high-entropy research](HIGH-ENTROPY-RESEARCH.md) for the candidate rationale.

@@ -1,0 +1,8 @@
+=== RUN   TestDocsEntropyExperiment
+    docs_entropy_test.go:407: decimal-float-bits/raw input=309248 encoded=309248 disk=1246164
+    docs_entropy_test.go:407: decimal-float-bits/zstd input=309248 encoded=103608 disk=1147409
+    docs_entropy_test.go:407: decimal-float-bits/for input=309248 encoded=233272 disk=1185113
+    docs_entropy_test.go:407: decimal-float-bits/shuffle-zstd input=309248 encoded=90671 disk=1117770
+--- PASS: TestDocsEntropyExperiment (6.08s)
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	7.009s

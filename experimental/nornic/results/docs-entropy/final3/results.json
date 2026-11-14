@@ -1,0 +1,602 @@
+[
+  {
+    "Shape": "documentation",
+    "Codec": "raw",
+    "InputBytes": 4262325,
+    "EncodedBytes": 4262325,
+    "EncodeNS": 2209300,
+    "DecodeNS": 1884800,
+    "AllocBytes": 12998,
+    "DirectoryBytes": 3263408
+  },
+  {
+    "Shape": "documentation",
+    "Codec": "snappy",
+    "InputBytes": 4262325,
+    "EncodedBytes": 2159302,
+    "EncodeNS": 8552900,
+    "DecodeNS": 3602500,
+    "AllocBytes": 12998,
+    "DirectoryBytes": 3262220
+  },
+  {
+    "Shape": "documentation",
+    "Codec": "zstd",
+    "InputBytes": 4262325,
+    "EncodedBytes": 1559103,
+    "EncodeNS": 24263800,
+    "DecodeNS": 11444800,
+    "AllocBytes": 13954,
+    "DirectoryBytes": 2664465
+  },
+  {
+    "Shape": "documentation",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 4262325,
+    "EncodedBytes": 1559444,
+    "EncodeNS": 24975300,
+    "DecodeNS": 11290100,
+    "AllocBytes": 13956,
+    "DirectoryBytes": 2664803
+  },
+  {
+    "Shape": "documentation",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 4262325,
+    "EncodedBytes": 1481680,
+    "EncodeNS": 32447400,
+    "DecodeNS": 15502600,
+    "AllocBytes": 13951,
+    "DirectoryBytes": 2534077
+  },
+  {
+    "Shape": "independent-hashes",
+    "Codec": "raw",
+    "InputBytes": 1236992,
+    "EncodedBytes": 1236992,
+    "EncodeNS": 615300,
+    "DecodeNS": 503500,
+    "AllocBytes": 4096,
+    "DirectoryBytes": 2340951
+  },
+  {
+    "Shape": "independent-hashes",
+    "Codec": "snappy",
+    "InputBytes": 1236992,
+    "EncodedBytes": 1238502,
+    "EncodeNS": 805100,
+    "DecodeNS": 564000,
+    "AllocBytes": 4096,
+    "DirectoryBytes": 2342459
+  },
+  {
+    "Shape": "independent-hashes",
+    "Codec": "zstd",
+    "InputBytes": 1236992,
+    "EncodedBytes": 1241220,
+    "EncodeNS": 1732100,
+    "DecodeNS": 555400,
+    "AllocBytes": 4864,
+    "DirectoryBytes": 2345185
+  },
+  {
+    "Shape": "independent-hashes",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 1236992,
+    "EncodedBytes": 1237294,
+    "EncodeNS": 3372600,
+    "DecodeNS": 1620300,
+    "AllocBytes": 4096,
+    "DirectoryBytes": 2341263
+  },
+  {
+    "Shape": "independent-hashes",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 1236992,
+    "EncodedBytes": 1293278,
+    "EncodeNS": 4440400,
+    "DecodeNS": 1003800,
+    "AllocBytes": 4864,
+    "DirectoryBytes": 2345483
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "raw",
+    "InputBytes": 309248,
+    "EncodedBytes": 309248,
+    "EncodeNS": 798500,
+    "DecodeNS": 0,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1211276
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "snappy",
+    "InputBytes": 309248,
+    "EncodedBytes": 149617,
+    "EncodeNS": 368700,
+    "DecodeNS": 535200,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1145197
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 36198,
+    "EncodeNS": 1771000,
+    "DecodeNS": 1233100,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1097053
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 36500,
+    "EncodeNS": 3080200,
+    "DecodeNS": 1248000,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1097297
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "for",
+    "InputBytes": 309248,
+    "EncodedBytes": 25368,
+    "EncodeNS": 0,
+    "DecodeNS": 0,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1084159
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 26576,
+    "EncodeNS": 0,
+    "DecodeNS": 818400,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1084327
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "delta-mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 31408,
+    "EncodeNS": 0,
+    "DecodeNS": 545300,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1090139
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "shuffle-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 30039,
+    "EncodeNS": 636800,
+    "DecodeNS": 1116900,
+    "AllocBytes": 2177,
+    "DirectoryBytes": 1089553
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "patched-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 25670,
+    "EncodeNS": 458900,
+    "DecodeNS": 0,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1088731
+  },
+  {
+    "Shape": "low-range",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 87690,
+    "EncodeNS": 3216900,
+    "DecodeNS": 999700,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1096552
+  },
+  {
+    "Shape": "mixed-json",
+    "Codec": "raw",
+    "InputBytes": 15540713,
+    "EncodedBytes": 15540713,
+    "EncodeNS": 2681400,
+    "DecodeNS": 5540800,
+    "AllocBytes": 57126,
+    "DirectoryBytes": 4682722
+  },
+  {
+    "Shape": "mixed-json",
+    "Codec": "snappy",
+    "InputBytes": 15540713,
+    "EncodedBytes": 3598183,
+    "EncodeNS": 7600900,
+    "DecodeNS": 4337600,
+    "AllocBytes": 57126,
+    "DirectoryBytes": 4668567
+  },
+  {
+    "Shape": "mixed-json",
+    "Codec": "zstd",
+    "InputBytes": 15540713,
+    "EncodedBytes": 1665863,
+    "EncodeNS": 24312500,
+    "DecodeNS": 11221600,
+    "AllocBytes": 57146,
+    "DirectoryBytes": 2764992
+  },
+  {
+    "Shape": "mixed-json",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 15540713,
+    "EncodedBytes": 1666165,
+    "EncodeNS": 25363800,
+    "DecodeNS": 10893600,
+    "AllocBytes": 57149,
+    "DirectoryBytes": 2765294
+  },
+  {
+    "Shape": "mixed-json",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 15540713,
+    "EncodedBytes": 1699738,
+    "EncodeNS": 33617100,
+    "DecodeNS": 11950500,
+    "AllocBytes": 57141,
+    "DirectoryBytes": 2747109
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "raw",
+    "InputBytes": 309248,
+    "EncodedBytes": 309248,
+    "EncodeNS": 396500,
+    "DecodeNS": 0,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1220304
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "snappy",
+    "InputBytes": 309248,
+    "EncodedBytes": 139464,
+    "EncodeNS": 346700,
+    "DecodeNS": 503500,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1150637
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 50941,
+    "EncodeNS": 3467100,
+    "DecodeNS": 1685200,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1113815
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 51243,
+    "EncodeNS": 3963900,
+    "DecodeNS": 2033500,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1114006
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "for",
+    "InputBytes": 309248,
+    "EncodedBytes": 310376,
+    "EncodeNS": 917800,
+    "DecodeNS": 603400,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1217770
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 311584,
+    "EncodeNS": 1062500,
+    "DecodeNS": 621800,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1219467
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "delta-mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 314672,
+    "EncodeNS": 348200,
+    "DecodeNS": 643100,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1194328
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "shuffle-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 54922,
+    "EncodeNS": 2053800,
+    "DecodeNS": 1030800,
+    "AllocBytes": 2177,
+    "DirectoryBytes": 1105587
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "patched-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 31710,
+    "EncodeNS": 347000,
+    "DecodeNS": 586000,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1095337
+  },
+  {
+    "Shape": "outliers",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 101896,
+    "EncodeNS": 4152400,
+    "DecodeNS": 2458500,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1112860
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "raw",
+    "InputBytes": 309248,
+    "EncodedBytes": 309248,
+    "EncodeNS": 0,
+    "DecodeNS": 0,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1388252
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "snappy",
+    "InputBytes": 309248,
+    "EncodedBytes": 310758,
+    "EncodeNS": 440200,
+    "DecodeNS": 0,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1389761
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 313778,
+    "EncodeNS": 1504000,
+    "DecodeNS": 0,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1392783
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 309550,
+    "EncodeNS": 0,
+    "DecodeNS": 684100,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1388554
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "for",
+    "InputBytes": 309248,
+    "EncodedBytes": 315288,
+    "EncodeNS": 849300,
+    "DecodeNS": 0,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1394292
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 316496,
+    "EncodeNS": 0,
+    "DecodeNS": 0,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1395501
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "delta-mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 316496,
+    "EncodeNS": 751200,
+    "DecodeNS": 533900,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1395499
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "shuffle-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 313778,
+    "EncodeNS": 599400,
+    "DecodeNS": 602900,
+    "AllocBytes": 2176,
+    "DirectoryBytes": 1392783
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "patched-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 310758,
+    "EncodeNS": 591900,
+    "DecodeNS": 1561500,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1389767
+  },
+  {
+    "Shape": "random-int64",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 365836,
+    "EncodeNS": 3007300,
+    "DecodeNS": 0,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1393083
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "raw",
+    "InputBytes": 309248,
+    "EncodedBytes": 309248,
+    "EncodeNS": 913200,
+    "DecodeNS": 0,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1162703
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "snappy",
+    "InputBytes": 309248,
+    "EncodedBytes": 235862,
+    "EncodeNS": 998200,
+    "DecodeNS": 522100,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1131085
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 113552,
+    "EncodeNS": 4437100,
+    "DecodeNS": 516100,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1083909
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 113854,
+    "EncodeNS": 4134700,
+    "DecodeNS": 1032600,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1083928
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "for",
+    "InputBytes": 309248,
+    "EncodedBytes": 136504,
+    "EncodeNS": 1137200,
+    "DecodeNS": 0,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1092771
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 137712,
+    "EncodeNS": 905700,
+    "DecodeNS": 0,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1092945
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "delta-mini-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 302000,
+    "EncodeNS": 1472800,
+    "DecodeNS": 0,
+    "AllocBytes": 3072,
+    "DirectoryBytes": 1092533
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "shuffle-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 106908,
+    "EncodeNS": 3136400,
+    "DecodeNS": 1310400,
+    "AllocBytes": 2176,
+    "DirectoryBytes": 1081719
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "patched-for",
+    "InputBytes": 309248,
+    "EncodedBytes": 301094,
+    "EncodeNS": 1656900,
+    "DecodeNS": 1087700,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1161686
+  },
+  {
+    "Shape": "timestamps",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 165610,
+    "EncodeNS": 8237100,
+    "DecodeNS": 1223400,
+    "AllocBytes": 1152,
+    "DirectoryBytes": 1083930
+  },
+  {
+    "Shape": "unique-paths",
+    "Codec": "raw",
+    "InputBytes": 2806076,
+    "EncodedBytes": 2806076,
+    "EncodeNS": 787700,
+    "DecodeNS": 0,
+    "AllocBytes": 9893,
+    "DirectoryBytes": 1384288
+  },
+  {
+    "Shape": "unique-paths",
+    "Codec": "snappy",
+    "InputBytes": 2806076,
+    "EncodedBytes": 285706,
+    "EncodeNS": 1809500,
+    "DecodeNS": 1036900,
+    "AllocBytes": 9893,
+    "DirectoryBytes": 1186053
+  },
+  {
+    "Shape": "unique-paths",
+    "Codec": "zstd",
+    "InputBytes": 2806076,
+    "EncodedBytes": 86039,
+    "EncodeNS": 4442200,
+    "DecodeNS": 1679300,
+    "AllocBytes": 9898,
+    "DirectoryBytes": 1137055
+  },
+  {
+    "Shape": "unique-paths",
+    "Codec": "adaptive-zstd",
+    "InputBytes": 2806076,
+    "EncodedBytes": 86341,
+    "EncodeNS": 3675500,
+    "DecodeNS": 2412700,
+    "AllocBytes": 9899,
+    "DirectoryBytes": 1137184
+  },
+  {
+    "Shape": "unique-paths",
+    "Codec": "dictionary-zstd",
+    "InputBytes": 2806076,
+    "EncodedBytes": 135819,
+    "EncodeNS": 6764200,
+    "DecodeNS": 2791700,
+    "AllocBytes": 9898,
+    "DirectoryBytes": 1134069
+  }
+]

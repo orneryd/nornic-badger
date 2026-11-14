@@ -1,0 +1,245 @@
+{
+  "SeedSHA256": "b4f4bd0c5d2d202515c92c82f9fa52aafffde943b2ce1a34c072f8a0c4fac493",
+  "Rows": [
+    {
+      "Shape": "outliers-0-of-4096",
+      "Codec": "for",
+      "InputBytes": 32768,
+      "EncodedBytes": 2068,
+      "EncodeNS": 35526,
+      "DecodeNS": 29354,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-0-of-4096",
+      "Codec": "mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 2816,
+      "EncodeNS": 29498,
+      "DecodeNS": 52857,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-0-of-4096",
+      "Codec": "delta-mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 3328,
+      "EncodeNS": 42414,
+      "DecodeNS": 52168,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-0-of-4096",
+      "Codec": "patched-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 2565,
+      "EncodeNS": 39112,
+      "DecodeNS": 38378,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4-of-4096",
+      "Codec": "for",
+      "InputBytes": 32768,
+      "EncodedBytes": 32276,
+      "EncodeNS": 137325,
+      "DecodeNS": 25112,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4-of-4096",
+      "Codec": "mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 4672,
+      "EncodeNS": 40363,
+      "DecodeNS": 46664,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4-of-4096",
+      "Codec": "delta-mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 5184,
+      "EncodeNS": 45329,
+      "DecodeNS": 55479,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4-of-4096",
+      "Codec": "patched-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 2605,
+      "EncodeNS": 43501,
+      "DecodeNS": 34151,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-41-of-4096",
+      "Codec": "for",
+      "InputBytes": 32768,
+      "EncodedBytes": 32788,
+      "EncodeNS": 16258,
+      "DecodeNS": 20567,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-41-of-4096",
+      "Codec": "mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 6656,
+      "EncodeNS": 27714,
+      "DecodeNS": 51812,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-41-of-4096",
+      "Codec": "delta-mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 7104,
+      "EncodeNS": 40001,
+      "DecodeNS": 63047,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-41-of-4096",
+      "Codec": "patched-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 2975,
+      "EncodeNS": 35579,
+      "DecodeNS": 46408,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-205-of-4096",
+      "Codec": "for",
+      "InputBytes": 32768,
+      "EncodedBytes": 32788,
+      "EncodeNS": 17997,
+      "DecodeNS": 11365,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-205-of-4096",
+      "Codec": "mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 18176,
+      "EncodeNS": 40574,
+      "DecodeNS": 52350,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-205-of-4096",
+      "Codec": "delta-mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 18432,
+      "EncodeNS": 45146,
+      "DecodeNS": 48427,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-205-of-4096",
+      "Codec": "patched-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 4615,
+      "EncodeNS": 35086,
+      "DecodeNS": 42980,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-819-of-4096",
+      "Codec": "for",
+      "InputBytes": 32768,
+      "EncodedBytes": 32788,
+      "EncodeNS": 27057,
+      "DecodeNS": 10890,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-819-of-4096",
+      "Codec": "mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 33536,
+      "EncodeNS": 45315,
+      "DecodeNS": 47312,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-819-of-4096",
+      "Codec": "delta-mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 33536,
+      "EncodeNS": 46895,
+      "DecodeNS": 47606,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-819-of-4096",
+      "Codec": "patched-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 10755,
+      "EncodeNS": 47273,
+      "DecodeNS": 41034,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4096-of-4096",
+      "Codec": "for",
+      "InputBytes": 32768,
+      "EncodedBytes": 32788,
+      "EncodeNS": 26561,
+      "DecodeNS": 15779,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4096-of-4096",
+      "Codec": "mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 33536,
+      "EncodeNS": 49649,
+      "DecodeNS": 44039,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4096-of-4096",
+      "Codec": "delta-mini-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 33536,
+      "EncodeNS": 46106,
+      "DecodeNS": 48355,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    },
+    {
+      "Shape": "outliers-4096-of-4096",
+      "Codec": "patched-for",
+      "InputBytes": 32768,
+      "EncodedBytes": 32773,
+      "EncodeNS": 135153,
+      "DecodeNS": 130862,
+      "AllocBytes": 0,
+      "DirectoryBytes": 0
+    }
+  ]
+}

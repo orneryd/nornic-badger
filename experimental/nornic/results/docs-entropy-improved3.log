@@ -1,0 +1,28 @@
+=== RUN   TestDocsEntropyExperiment
+    docs_entropy_test.go:407: decimal-float-bits/anchored-delta input=309248 encoded=23630 disk=1070016
+    docs_entropy_test.go:407: decimal-float-bits/patched-direct input=309248 encoded=310726 disk=1246942
+    docs_entropy_test.go:407: decimal-float-bits/sampled-zstd input=309248 encoded=103910 disk=1147709
+    docs_entropy_test.go:407: decimal-float-bits/xor-zstd input=309248 encoded=60257 disk=1089400
+    docs_entropy_test.go:407: documentation/sampled-zstd input=4262325 encoded=1714882 disk=2711915
+    docs_entropy_test.go:407: independent-hashes/sampled-zstd input=1236992 encoded=1237294 disk=2341263
+    docs_entropy_test.go:407: low-range/anchored-delta input=309248 encoded=33824 disk=1090900
+    docs_entropy_test.go:407: low-range/patched-direct input=309248 encoded=25670 disk=1088731
+    docs_entropy_test.go:407: low-range/sampled-zstd input=309248 encoded=36500 disk=1097297
+    docs_entropy_test.go:407: low-range/xor-zstd input=309248 encoded=36057 disk=1096844
+    docs_entropy_test.go:407: mixed-json/sampled-zstd input=15540713 encoded=1666165 disk=2765294
+    docs_entropy_test.go:407: outliers/anchored-delta input=309248 encoded=314017 disk=1202099
+    docs_entropy_test.go:407: outliers/patched-direct input=309248 encoded=31710 disk=1095337
+    docs_entropy_test.go:407: outliers/sampled-zstd input=309248 encoded=51243 disk=1114006
+    docs_entropy_test.go:407: outliers/xor-zstd input=309248 encoded=62222 disk=1125582
+    docs_entropy_test.go:407: random-int64/anchored-delta input=309248 encoded=316496 disk=1395506
+    docs_entropy_test.go:407: random-int64/patched-direct input=309248 encoded=310758 disk=1389767
+    docs_entropy_test.go:407: random-int64/sampled-zstd input=309248 encoded=309550 disk=1388554
+    docs_entropy_test.go:407: random-int64/xor-zstd input=309248 encoded=313778 disk=1392783
+    docs_entropy_test.go:407: timestamps/anchored-delta input=309248 encoded=9664 disk=1063523
+    docs_entropy_test.go:407: timestamps/patched-direct input=309248 encoded=301094 disk=1161686
+    docs_entropy_test.go:407: timestamps/sampled-zstd input=309248 encoded=113854 disk=1083928
+    docs_entropy_test.go:407: timestamps/xor-zstd input=309248 encoded=97546 disk=1080259
+    docs_entropy_test.go:407: unique-paths/sampled-zstd input=2806076 encoded=86341 disk=1137184
+--- PASS: TestDocsEntropyExperiment (35.68s)
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	36.599s

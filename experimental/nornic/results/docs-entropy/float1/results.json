@@ -1,0 +1,42 @@
+[
+  {
+    "Shape": "decimal-float-bits",
+    "Codec": "raw",
+    "InputBytes": 309248,
+    "EncodedBytes": 309248,
+    "EncodeNS": 0,
+    "DecodeNS": 0,
+    "AllocBytes": 1024,
+    "DirectoryBytes": 1246164
+  },
+  {
+    "Shape": "decimal-float-bits",
+    "Codec": "zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 103608,
+    "EncodeNS": 3534400,
+    "DecodeNS": 1645300,
+    "AllocBytes": 1153,
+    "DirectoryBytes": 1147409
+  },
+  {
+    "Shape": "decimal-float-bits",
+    "Codec": "for",
+    "InputBytes": 309248,
+    "EncodedBytes": 233272,
+    "EncodeNS": 1855200,
+    "DecodeNS": 0,
+    "AllocBytes": 2048,
+    "DirectoryBytes": 1185113
+  },
+  {
+    "Shape": "decimal-float-bits",
+    "Codec": "shuffle-zstd",
+    "InputBytes": 309248,
+    "EncodedBytes": 90671,
+    "EncodeNS": 2955500,
+    "DecodeNS": 1031000,
+    "AllocBytes": 2178,
+    "DirectoryBytes": 1117770
+  }
+]
