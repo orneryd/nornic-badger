@@ -18,6 +18,7 @@ import (
 	"github.com/klauspost/compress/s2"
 	"google.golang.org/protobuf/proto"
 
+	"github.com/dgraph-io/badger/v4/experimental/columnar"
 	"github.com/dgraph-io/badger/v4/fb"
 	"github.com/dgraph-io/badger/v4/options"
 	"github.com/dgraph-io/badger/v4/pb"
@@ -58,6 +59,7 @@ func (h *header) Decode(buf []byte) {
 
 // bblock represents a block that is being compressed/encrypted in the background.
 type bblock struct {
+	columns      []columnar.Span
 	data         []byte
 	baseKey      []byte   // Base key for the current block.
 	entryOffsets []uint32 // Offsets of entries present in current block.
@@ -136,6 +138,9 @@ func NewTableBuilder(opts Options) *Builder {
 	}
 
 	count := 2 * runtime.NumCPU()
+	if b.opts.Compression == options.NornicColumnar {
+		count = 2 * runtime.GOMAXPROCS(0)
+	}
 	b.blockChan = make(chan *bblock, count*2)
 
 	b.wg.Add(count)
@@ -151,6 +156,8 @@ func maxEncodedLen(ctype options.CompressionType, sz int) int {
 		return s2.MaxEncodedLen(sz)
 	case options.ZSTD:
 		return y.ZSTDCompressBound(sz)
+	case options.NornicColumnar:
+		return max(sz, y.ZSTDCompressBound(sz)) + 1
 	}
 	return sz
 }
@@ -164,7 +171,19 @@ func (b *Builder) handleBlock() {
 		blockBuf := item.data[:item.end]
 		// Compress the block.
 		if doCompress {
-			out, err := b.compressData(blockBuf)
+			var out []byte
+			var err error
+			if b.opts.Compression == options.NornicColumnar {
+				encoded, e := compressColumnarBlock(blockBuf, b.opts.ZSTDCompressionLevel, item.columns)
+				err = e
+				if e == nil {
+					out = b.alloc.Allocate(len(encoded))
+					copy(out, encoded)
+				}
+			} else {
+				out, err = b.compressData(blockBuf)
+			}
+			item.columns = nil
 			y.Check(err)
 			blockBuf = out
 		}
@@ -239,6 +258,16 @@ func (b *Builder) addHelper(key []byte, v y.ValueStruct, vpLen uint32) {
 	b.append(h.Encode())
 	b.append(diffKey)
 
+	valueStart := b.curBlock.end + int(v.EncodedSize()) - len(v.Value)
+	if b.opts.Compression == options.NornicColumnar && b.opts.ValueColumns != nil {
+		previous := 0
+		for _, span := range b.opts.ValueColumns(key, v) {
+			y.AssertTrue(span.Start >= previous && span.Length >= 0 && span.Start <= len(v.Value) && span.Length <= len(v.Value)-span.Start)
+			previous = span.Start + span.Length
+			span.Start += valueStart
+			b.curBlock.columns = append(b.curBlock.columns, span)
+		}
+	}
 	dst := b.allocate(int(v.EncodedSize()))
 	v.Encode(dst)
 
@@ -508,6 +537,15 @@ func (b *Builder) shouldEncrypt() bool {
 
 // compressData compresses the given data.
 func (b *Builder) compressData(data []byte) ([]byte, error) {
+	if b.opts.Compression == options.NornicColumnar {
+		encoded, err := compressColumnarBlock(data, b.opts.ZSTDCompressionLevel)
+		if err != nil {
+			return nil, err
+		}
+		dst := b.alloc.Allocate(len(encoded))
+		copy(dst, encoded)
+		return dst, nil
+	}
 	switch b.opts.Compression {
 	case options.None:
 		return data, nil

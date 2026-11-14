@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/dgraph-io/badger/v4/experimental/columnar"
 	"github.com/dgraph-io/badger/v4/options"
 	"github.com/dgraph-io/badger/v4/table"
 	"github.com/dgraph-io/badger/v4/y"
@@ -38,13 +39,15 @@ type Options struct {
 
 	// Usually modified options.
 
-	SyncWrites        bool
-	NumVersionsToKeep int
-	ReadOnly          bool
-	Logger            Logger
-	Compression       options.CompressionType
-	InMemory          bool
-	MetricsEnabled    bool
+	SyncWrites          bool
+	NumVersionsToKeep   int
+	ReadOnly            bool
+	Logger              Logger
+	Compression         options.CompressionType
+	ColumnarValueLayout func(key, value []byte) []columnar.Span `json:"-"`
+	CompressionSelector func() options.CompressionType          `json:"-"`
+	InMemory            bool
+	MetricsEnabled      bool
 	// Sets the Stream.numGo field
 	NumGoroutines int
 
@@ -179,9 +182,22 @@ func DefaultOptions(path string) Options {
 
 func buildTableOptions(db *DB) table.Options {
 	opt := db.opt
+	if opt.CompressionSelector != nil {
+		opt.Compression = opt.CompressionSelector()
+	}
 	dk, err := db.registry.LatestDataKey()
 	y.Check(err)
+	var layout func([]byte, y.ValueStruct) []columnar.Span
+	if opt.ColumnarValueLayout != nil {
+		layout = func(key []byte, value y.ValueStruct) []columnar.Span {
+			if value.Meta&bitValuePointer != 0 {
+				return nil
+			}
+			return opt.ColumnarValueLayout(y.ParseKey(key), value.Value)
+		}
+	}
 	return table.Options{
+		ValueColumns:         layout,
 		ReadOnly:             opt.ReadOnly,
 		MetricsEnabled:       db.opt.MetricsEnabled,
 		TableSize:            uint64(opt.BaseTableSize),
@@ -788,4 +804,19 @@ func (opt Options) getFileFlags() int {
 		flags |= os.O_RDWR
 	}
 	return flags
+}
+
+// WithColumnarValueLayout supplies pure, borrowed byte spans for schema-aware physical columns.
+// It is used only with NornicColumnar compression. Value-log pointers are never passed.
+// Returned spans must be ordered, disjoint and inside value. The callback must be concurrency-safe.
+func (opt Options) WithColumnarValueLayout(layout func(key, value []byte) []columnar.Span) Options {
+	opt.ColumnarValueLayout = layout
+	return opt
+}
+
+// WithCompressionSelector chooses the codec for each newly constructed table.
+// Existing tables retain their manifest codec. The selector must be concurrency-safe.
+func (opt Options) WithCompressionSelector(selector func() options.CompressionType) Options {
+	opt.CompressionSelector = selector
+	return opt
 }

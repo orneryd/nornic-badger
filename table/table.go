@@ -25,6 +25,7 @@ import (
 	"github.com/klauspost/compress/zstd"
 	"google.golang.org/protobuf/proto"
 
+	"github.com/dgraph-io/badger/v4/experimental/columnar"
 	"github.com/dgraph-io/badger/v4/fb"
 	"github.com/dgraph-io/badger/v4/options"
 	"github.com/dgraph-io/badger/v4/pb"
@@ -64,6 +65,8 @@ type Options struct {
 
 	// Compression indicates the compression algorithm used for block compression.
 	Compression options.CompressionType
+	// ValueColumns optionally identifies corresponding opaque fields in inline values.
+	ValueColumns func([]byte, y.ValueStruct) []columnar.Span
 
 	// Block cache is used to cache decompressed and decrypted blocks.
 	BlockCache *ristretto.Cache[[]byte, *Block]
@@ -795,6 +798,14 @@ func (t *Table) decompress(b *Block) error {
 	src := b.data
 
 	switch t.opt.Compression {
+	case options.NornicColumnar:
+		decoded, decodeErr := decompressColumnarBlock(b.data)
+		if decodeErr != nil {
+			return decodeErr
+		}
+		dst = z.Calloc(len(decoded), "Table.DecompressColumnar")
+		copy(dst, decoded)
+		b.data = dst
 	case options.None:
 		// Nothing to be done here.
 		return nil

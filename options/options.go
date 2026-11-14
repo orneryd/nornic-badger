@@ -30,4 +30,7 @@ const (
 	Snappy CompressionType = 1
 	// ZSTD mode indicates that a block is compressed using ZSTD algorithm.
 	ZSTD CompressionType = 2
+	// NornicColumnar adaptively encodes whole physical blocks using byte columns and Zstd.
+	// It is experimental and requires this fork to read the resulting tables.
+	NornicColumnar CompressionType = 3
 )
