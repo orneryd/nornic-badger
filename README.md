@@ -1,3 +1,7 @@
+# NornicDB private Badger development
+
+This private development copy starts from upstream Badger v4.9.6. See the [storage experiment plan](PLAN.md), [development overview](NORNIC.md) and [prototype evidence](experimental/nornic/README.md). The experimental codecs do not yet change Badger's physical read path. The upstream documentation follows; its badges describe upstream, not qualification of this private development line.
+
 # BadgerDB
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/dgraph-io/badger/v4.svg)](https://pkg.go.dev/github.com/dgraph-io/badger/v4)
