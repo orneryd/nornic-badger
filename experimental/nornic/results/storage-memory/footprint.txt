@@ -1,0 +1,152 @@
+=== RUN   TestBadgerStorageFootprint
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1 encoding=column values=1048576 payload_bytes=5120 closed_directory_bytes=1073243
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=1491583
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1048576 encoding=column values=1048576 payload_bytes=5120 closed_directory_bytes=1053611
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1 encoding=column values=1048576 payload_bytes=791552 closed_directory_bytes=1860086
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=5266304
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1048576 encoding=column values=1048576 payload_bytes=791552 closed_directory_bytes=1127802
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1 encoding=column values=1048576 payload_bytes=1577984 closed_directory_bytes=2646556
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=5274171
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1048576 encoding=column values=1048576 payload_bytes=1577984 closed_directory_bytes=2650756
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1 encoding=column values=1048576 payload_bytes=8393728 closed_directory_bytes=9462710
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9461628
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1048576 encoding=column values=1048576 payload_bytes=8393728 closed_directory_bytes=9466758
+--- PASS: TestBadgerStorageFootprint (1.23s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1/column (0.06s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1048576/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1048576/column (0.06s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1/column (0.08s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1048576/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1048576/column (0.07s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1/column (0.07s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1048576/raw (0.08s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1048576/column (0.08s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1/column (0.08s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1048576/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1048576/column (0.09s)
+=== RUN   TestBadgerStorageFootprint
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1 encoding=column values=1048576 payload_bytes=5120 closed_directory_bytes=1073243
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=1491583
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1048576 encoding=column values=1048576 payload_bytes=5120 closed_directory_bytes=1053611
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1 encoding=column values=1048576 payload_bytes=791552 closed_directory_bytes=1860086
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=5266304
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1048576 encoding=column values=1048576 payload_bytes=791552 closed_directory_bytes=1127802
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1 encoding=column values=1048576 payload_bytes=1577984 closed_directory_bytes=2646556
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=5274171
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1048576 encoding=column values=1048576 payload_bytes=1577984 closed_directory_bytes=2650756
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1 encoding=column values=1048576 payload_bytes=8393728 closed_directory_bytes=9462710
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9461628
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1048576 encoding=column values=1048576 payload_bytes=8393728 closed_directory_bytes=9466758
+--- PASS: TestBadgerStorageFootprint (3.05s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1/column (0.06s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1048576/raw (0.08s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1048576/column (0.06s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1/column (0.07s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1048576/raw (0.10s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1048576/column (0.08s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1/column (0.08s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1048576/raw (0.10s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1048576/column (0.10s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1/raw (0.23s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1/column (0.48s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1048576/raw (0.23s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1048576/column (1.17s)
+=== RUN   TestBadgerStorageFootprint
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1 encoding=column values=1048576 payload_bytes=5120 closed_directory_bytes=1073243
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=1491583
+=== RUN   TestBadgerStorageFootprint/constant/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=constant threshold=1048576 encoding=column values=1048576 payload_bytes=5120 closed_directory_bytes=1053611
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1 encoding=column values=1048576 payload_bytes=791552 closed_directory_bytes=1860086
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=5266304
+=== RUN   TestBadgerStorageFootprint/small-range/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=small-range threshold=1048576 encoding=column values=1048576 payload_bytes=791552 closed_directory_bytes=1127802
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1 encoding=column values=1048576 payload_bytes=1577984 closed_directory_bytes=2646556
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=5274171
+=== RUN   TestBadgerStorageFootprint/monotone/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=monotone threshold=1048576 encoding=column values=1048576 payload_bytes=1577984 closed_directory_bytes=2650756
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1/raw
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9457572
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1/column
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1 encoding=column values=1048576 payload_bytes=8393728 closed_directory_bytes=9462710
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1048576/raw
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1048576 encoding=raw values=1048576 payload_bytes=8388608 closed_directory_bytes=9461628
+=== RUN   TestBadgerStorageFootprint/high-entropy/threshold-1048576/column
+    footprint_test.go:240: FOOTPRINT shape=high-entropy threshold=1048576 encoding=column values=1048576 payload_bytes=8393728 closed_directory_bytes=9466758
+--- PASS: TestBadgerStorageFootprint (1.27s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1/column (0.06s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1048576/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/constant/threshold-1048576/column (0.06s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1/column (0.07s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1048576/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/small-range/threshold-1048576/column (0.07s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1/raw (0.08s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1/column (0.07s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1048576/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/monotone/threshold-1048576/column (0.08s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1/raw (0.07s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1/column (0.08s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1048576/raw (0.09s)
+    --- PASS: TestBadgerStorageFootprint/high-entropy/threshold-1048576/column (0.11s)
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	6.467s

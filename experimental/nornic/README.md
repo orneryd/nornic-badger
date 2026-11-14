@@ -1,5 +1,7 @@
 # Projected records and compressed columns: first prototype
 
+Follow-up measurements: [batch decoder differences](BENCHMARK-DIFFERENCE.md) and [actual Badger file footprint / query allocations](STORAGE-MEMORY-REPORT.md). The latter includes an encoded equality-count operator, a reused-buffer reference and the opt-in storage experiment.
+
 This package begins the [Nornic storage plan](../../PLAN.md). Formats are provisional; no production data or NornicDB dependency has changed.
 
 ## Implemented

@@ -1,0 +1,42 @@
+goos: windows
+goarch: amd64
+pkg: github.com/dgraph-io/badger/v4/experimental/nornic
+cpu: Intel(R) Core(TM) i9-9900KF CPU @ 3.60GHz
+BenchmarkPredicateMemory/constant/encoded-count         	100000000	         3.263 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/constant/encoded-count         	100000000	         3.239 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/constant/encoded-count         	100000000	         3.227 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/constant/allocate-decode-count 	   58206	      6161 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/constant/allocate-decode-count 	   58632	      6302 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/constant/allocate-decode-count 	   57916	      6156 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/constant/reuse-decode-count    	  118647	      3029 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/constant/reuse-decode-count    	  119330	      3021 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/constant/reuse-decode-count    	  120031	      3021 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/small-range/encoded-count      	   14402	     24928 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/small-range/encoded-count      	   14437	     25002 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/small-range/encoded-count      	   14377	     25036 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/small-range/allocate-decode-count         	   22875	     16522 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/small-range/allocate-decode-count         	   20409	     17116 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/small-range/allocate-decode-count         	   22586	     15945 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/small-range/reuse-decode-count            	   28472	     12732 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/small-range/reuse-decode-count            	   28598	     12683 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/small-range/reuse-decode-count            	   28232	     12736 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/monotone/encoded-count                    	   10000	     32734 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/monotone/encoded-count                    	   10000	     33059 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/monotone/encoded-count                    	   10000	     32692 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/monotone/allocate-decode-count            	   22968	     15938 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/monotone/allocate-decode-count            	   21927	     16226 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/monotone/allocate-decode-count            	   21889	     15669 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/monotone/reuse-decode-count               	   28561	     12623 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/monotone/reuse-decode-count               	   28563	     12603 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/monotone/reuse-decode-count               	   28549	     12757 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/high-entropy/encoded-count                	   82611	      4367 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/high-entropy/encoded-count                	   80895	      4390 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/high-entropy/encoded-count                	   81649	      4392 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/high-entropy/allocate-decode-count        	   38749	      9153 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/high-entropy/allocate-decode-count        	   39556	      9155 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/high-entropy/allocate-decode-count        	   39129	      9110 ns/op	   32768 B/op	       1 allocs/op
+BenchmarkPredicateMemory/high-entropy/reuse-decode-count           	   58459	      6188 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/high-entropy/reuse-decode-count           	   59001	      6185 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPredicateMemory/high-entropy/reuse-decode-count           	   59185	      6094 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	17.109s
