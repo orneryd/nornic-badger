@@ -1,6 +1,8 @@
-# NornicDB private Badger development
+# NornicDB Badger development
 
-This private development copy starts from upstream Badger v4.9.6. See the [storage experiment plan](PLAN.md), [development overview](NORNIC.md) and [prototype evidence](experimental/nornic/README.md). The experimental codecs do not yet change Badger's physical read path. The upstream documentation follows; its badges describe upstream, not qualification of this private development line.
+This public development fork starts from upstream Badger v4.9.6 and retains its history, Apache-2.0 license and notices. See the [storage experiment plan](PLAN.md), [development overview](NORNIC.md) and [prototype evidence](experimental/nornic/README.md). The experimental codecs do not yet change Badger's physical read path. NornicDB's [experimental integration branch](https://github.com/orneryd/NornicDB/tree/experiment/projected-badger-v1.5.0) gates new property encodings behind a default-off runtime flag.
+
+The upstream documentation follows; its badges describe upstream, not qualification of this development line.
 
 # BadgerDB
 

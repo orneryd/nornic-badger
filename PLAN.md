@@ -2,14 +2,14 @@
 
 ## Objective
 
-Reduce NornicDB's property-read, traversal and aggregation costs by combining addressable entity records, compressed column blocks and bounded streaming APIs inside a private Badger development line. Preserve graph semantics, value types, transaction visibility and durability. Performance claims require measurements against current NornicDB and upstream Badger.
+Reduce NornicDB's property-read, traversal and aggregation costs by combining addressable entity records, compressed column blocks and bounded streaming APIs inside a Badger development line. Preserve graph semantics, value types, transaction visibility and durability. Performance claims require measurements against current NornicDB and upstream Badger.
 
 ## Repository and boundaries
 
-- Private repository: https://github.com/orneryd/nornic-badger
+- Public repository: https://github.com/orneryd/nornic-badger
 - Upstream: dgraph-io/badger v4.9.6, commit fbd8d2eefad8be8757249767255faf989945b599; retain its history, Apache-2.0 license and notices.
-- GitHub public forks cannot be private. This is a standalone private development copy with an upstream remote. Actions are disabled initially so inherited workflows do not execute on push.
-- Keep the upstream Go module path initially; NornicDB can consume a pinned private revision through a development-only Go replace. No production dependency change in the first stage.
+- Initially created as a standalone private development copy, this repository is now public at the maintainer's request. Its upstream remote and history are retained. Actions remain disabled so inherited workflows do not execute on push.
+- Keep the upstream Go module path initially; NornicDB can consume a pinned fork revision through a development-only Go replace. No production dependency change in the first stage.
 - Use the TETRA whitepaper as a source of hypotheses, not an implementable specification. No .tetra compatibility or reproduction of undisclosed algorithms is claimed.
 
 ## Architecture
