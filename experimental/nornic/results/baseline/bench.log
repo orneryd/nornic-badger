@@ -1,0 +1,51 @@
+goos: windows
+goarch: amd64
+pkg: github.com/dgraph-io/badger/v4/experimental/nornic
+cpu: Intel(R) Core(TM) i9-9900KF CPU @ 3.60GHz
+BenchmarkInt64Column/constant/encode         	   28424	     12609 ns/op	        20.00 encoded-bytes/block	      24 B/op	       1 allocs/op
+BenchmarkInt64Column/constant/encode         	   28574	     12629 ns/op	        20.00 encoded-bytes/block	      24 B/op	       1 allocs/op
+BenchmarkInt64Column/constant/encode         	   28677	     12565 ns/op	        20.00 encoded-bytes/block	      24 B/op	       1 allocs/op
+BenchmarkInt64Column/constant/decode         	   27741	     12901 ns/op	2539.95 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/constant/decode         	   28003	     12864 ns/op	2547.25 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/constant/decode         	   27973	     13166 ns/op	2488.91 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/constant/raw-reference  	   99480	      3611 ns/op	9075.53 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/constant/raw-reference  	   99382	      3616 ns/op	9061.99 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/constant/raw-reference  	   99477	      3616 ns/op	9062.77 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/small-range/encode      	   12951	     27727 ns/op	      3092 encoded-bytes/block	    3200 B/op	       1 allocs/op
+BenchmarkInt64Column/small-range/encode      	   13024	     27479 ns/op	      3092 encoded-bytes/block	    3200 B/op	       1 allocs/op
+BenchmarkInt64Column/small-range/encode      	   12924	     27611 ns/op	      3092 encoded-bytes/block	    3200 B/op	       1 allocs/op
+BenchmarkInt64Column/small-range/decode      	   10000	     31151 ns/op	1051.92 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/small-range/decode      	   10000	     31181 ns/op	1050.90 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/small-range/decode      	   10000	     31018 ns/op	1056.41 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/small-range/raw-reference         	   99816	      3702 ns/op	8850.27 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/small-range/raw-reference         	   99654	      3653 ns/op	8970.98 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/small-range/raw-reference         	   98656	      3635 ns/op	9014.98 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/monotone/encode                   	   10000	     34281 ns/op	      6164 encoded-bytes/block	    6528 B/op	       1 allocs/op
+BenchmarkInt64Column/monotone/encode                   	   10000	     34326 ns/op	      6164 encoded-bytes/block	    6528 B/op	       1 allocs/op
+BenchmarkInt64Column/monotone/encode                   	   10000	     34206 ns/op	      6164 encoded-bytes/block	    6528 B/op	       1 allocs/op
+BenchmarkInt64Column/monotone/decode                   	    9843	     36780 ns/op	 890.92 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/monotone/decode                   	    9843	     36847 ns/op	 889.31 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/monotone/decode                   	    9838	     37188 ns/op	 881.15 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/monotone/raw-reference            	   97582	      3638 ns/op	9006.15 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/monotone/raw-reference            	   98904	      3629 ns/op	9029.32 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/monotone/raw-reference            	   96577	      3645 ns/op	8990.91 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/high-entropy/encode               	   29613	     12118 ns/op	     32788 encoded-bytes/block	   40960 B/op	       1 allocs/op
+BenchmarkInt64Column/high-entropy/encode               	   30303	     11909 ns/op	     32788 encoded-bytes/block	   40960 B/op	       1 allocs/op
+BenchmarkInt64Column/high-entropy/encode               	   30568	     11841 ns/op	     32788 encoded-bytes/block	   40960 B/op	       1 allocs/op
+BenchmarkInt64Column/high-entropy/decode               	   25867	     14057 ns/op	2331.01 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/high-entropy/decode               	   25219	     14715 ns/op	2226.91 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/high-entropy/decode               	   24787	     14329 ns/op	2286.84 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/high-entropy/raw-reference        	   99740	      3613 ns/op	9070.50 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/high-entropy/raw-reference        	   98769	      3720 ns/op	8809.41 MB/s	       0 B/op	       0 allocs/op
+BenchmarkInt64Column/high-entropy/raw-reference        	  100059	      3612 ns/op	9070.79 MB/s	       0 B/op	       0 allocs/op
+BenchmarkRecordProjection/open-and-project-two-of-100  	  267805	      1244 ns/op	    6512 B/op	       6 allocs/op
+BenchmarkRecordProjection/open-and-project-two-of-100  	  283951	      1248 ns/op	    6512 B/op	       6 allocs/op
+BenchmarkRecordProjection/open-and-project-two-of-100  	  279463	      1246 ns/op	    6512 B/op	       6 allocs/op
+BenchmarkRecordProjection/project-two-of-100           	 2087053	       172.8 ns/op	    1024 B/op	       1 allocs/op
+BenchmarkRecordProjection/project-two-of-100           	 2072468	       173.3 ns/op	    1024 B/op	       1 allocs/op
+BenchmarkRecordProjection/project-two-of-100           	 2078504	       181.1 ns/op	    1024 B/op	       1 allocs/op
+BenchmarkRecordProjection/project-all-100              	  129397	      2771 ns/op	    1024 B/op	       1 allocs/op
+BenchmarkRecordProjection/project-all-100              	  128713	      2746 ns/op	    1024 B/op	       1 allocs/op
+BenchmarkRecordProjection/project-all-100              	  128742	      2753 ns/op	    1024 B/op	       1 allocs/op
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	20.477s

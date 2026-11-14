@@ -1,0 +1,1 @@
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	1.135s	coverage: 95.1% of statements

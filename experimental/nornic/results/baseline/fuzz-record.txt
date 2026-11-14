@@ -1,0 +1,6 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/1 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 1/1 completed, now fuzzing with 2 workers
+fuzz: elapsed: 3s, execs: 68654 (22881/sec), new interesting: 3 (total: 4)
+fuzz: elapsed: 5s, execs: 117667 (23827/sec), new interesting: 3 (total: 4)
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	5.222s
