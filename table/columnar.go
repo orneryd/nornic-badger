@@ -6,6 +6,7 @@ import (
 
 	"github.com/dgraph-io/badger/v4/experimental/columnar"
 	"github.com/dgraph-io/badger/v4/y"
+	"github.com/klauspost/compress/zstd"
 )
 
 // physicalValueSpans uses the builder's existing entry and footer formats.
@@ -90,20 +91,33 @@ func compressColumnarBlock(data []byte, level int, annotated ...[]columnar.Span)
 	return append([]byte{mode}, chosen...), nil
 }
 func decompressColumnarBlock(data []byte) ([]byte, error) {
+	return decompressColumnarBlockWithAllocator(data, func(n int) []byte { return make([]byte, n) })
+}
+
+func decompressColumnarBlockWithAllocator(data []byte, allocate func(int) []byte) ([]byte, error) {
 	if len(data) < 1 {
 		return nil, columnar.ErrFormat
 	}
 	switch data[0] {
 	case 0:
-		return data[1:], nil
+		out := allocate(len(data) - 1)
+		copy(out, data[1:])
+		return out, nil
 	case 1:
-		return y.ZSTDDecompress(nil, data[1:])
+		// The normal encoder records content size. Unknown-size frames retain
+		// Zstd's normal growth behavior rather than changing accepted frames.
+		var header zstd.Header
+		size := len(data) * 4
+		if err := header.Decode(data[1:]); err == nil && header.HasFCS && header.FrameContentSize <= uint64(^uint(0)>>1) {
+			size = int(header.FrameContentSize)
+		}
+		return y.ZSTDDecompress(allocate(size), data[1:])
 	case 2:
 		frame, err := y.ZSTDDecompress(nil, data[1:])
 		if err != nil {
 			return nil, err
 		}
-		return columnar.Restore(frame)
+		return columnar.RestoreWithAllocator(frame, allocate)
 	default:
 		return nil, fmt.Errorf("%w: unknown physical codec %d", columnar.ErrFormat, data[0])
 	}

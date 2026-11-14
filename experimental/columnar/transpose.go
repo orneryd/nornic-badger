@@ -161,11 +161,21 @@ func frameSpans(frame []byte) ([]Span, int, int, error) {
 
 // Restore reverses Transpose exactly, including original key offsets and checksums.
 func Restore(frame []byte) ([]byte, error) {
+	return RestoreWithAllocator(frame, func(length int) []byte { return make([]byte, length) })
+}
+
+// RestoreWithAllocator reconstructs directly in caller-owned storage. The frame
+// is validated before allocate is called. allocate must return exactly length
+// bytes; ownership and release remain with the caller, including on errors.
+func RestoreWithAllocator(frame []byte, allocate func(length int) []byte) ([]byte, error) {
 	spans, at, length, e := frameSpans(frame)
 	if e != nil {
 		return nil, e
 	}
-	out := make([]byte, length)
+	out := allocate(length)
+	if len(out) != length {
+		return nil, ErrFormat
+	}
 	previous := 0
 	for _, s := range spans {
 		gap := s.Start - previous

@@ -12,12 +12,21 @@ import (
 // Larger properties remain in the caller's original encoding.
 const MaxPayloadBytes = 64 << 20
 
+const maxPayloadScratchBytes = 128 << 10
+
+type payloadEncoder struct {
+	encoder *zstd.Encoder
+	scratch []byte
+}
+
 var payloadEncoders = sync.Pool{New: func() any {
-	e, err := zstd.NewWriter(nil, zstd.WithEncoderConcurrency(1), zstd.WithEncoderLevel(zstd.SpeedFastest))
+	// Each property is independent. A bounded window avoids retaining an 8 MiB
+	// history per pooled encoder for predominantly small documentation values.
+	e, err := zstd.NewWriter(nil, zstd.WithEncoderConcurrency(1), zstd.WithEncoderLevel(zstd.SpeedFastest), zstd.WithWindowSize(128<<10))
 	if err != nil {
 		panic(err)
 	}
-	return e
+	return &payloadEncoder{encoder: e}
 }}
 var payloadDecoders = sync.Pool{New: func() any {
 	d, err := zstd.NewReader(nil, zstd.WithDecoderConcurrency(1), zstd.WithDecoderMaxMemory(MaxPayloadBytes), zstd.WithDecodeAllCapLimit(true))
@@ -34,15 +43,24 @@ func EncodePayload(src []byte, framingBytes int) ([]byte, error) {
 	if len(src) < 512 || len(src) > MaxPayloadBytes {
 		return nil, nil
 	}
-	e := payloadEncoders.Get().(*zstd.Encoder)
-	out := e.EncodeAll(src, make([]byte, 5, 5+len(src)))
-	payloadEncoders.Put(e)
+	e := payloadEncoders.Get().(*payloadEncoder)
+	if cap(e.scratch) < 5 {
+		e.scratch = make([]byte, 5, 4096)
+	}
+	out := e.encoder.EncodeAll(src, e.scratch[:5])
+	if cap(out) <= maxPayloadScratchBytes {
+		e.scratch = out[:0]
+	}
 	if len(out)+framingBytes >= len(src)-len(src)/8 {
+		payloadEncoders.Put(e)
 		return nil, nil
 	}
 	out[0] = 1
 	binary.LittleEndian.PutUint32(out[1:5], uint32(len(src)))
-	return out, nil
+	// The caller owns accepted bytes; no pooled buffer may escape or alias it.
+	owned := append([]byte(nil), out...)
+	payloadEncoders.Put(e)
+	return owned, nil
 }
 
 // DecodePayload returns the exact typed bytes supplied to EncodePayload.

@@ -50,3 +50,33 @@ func TestPayloadRejectsCorruptionAndDeclaredSize(t *testing.T) {
 		t.Fatal("length mismatch")
 	}
 }
+
+func TestPayloadScratchOwnershipAndBound(t *testing.T) {
+	source := bytes.Repeat([]byte("documentation/property/"), 4096)
+	first, err := EncodePayload(source, 6)
+	if err != nil || first == nil {
+		t.Fatal("expected compressed payload", err)
+	}
+	saved := bytes.Clone(first)
+	for i := 0; i < 32; i++ {
+		if _, err = EncodePayload(bytes.Repeat([]byte{byte(i)}, 2048+i), 6); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if _, err = EncodePayload(docsRaw(footprintValues("random", 65536)), 6); err != nil {
+		t.Fatal(err)
+	}
+	if !bytes.Equal(first, saved) {
+		t.Fatal("pooled scratch escaped into caller-owned payload")
+	}
+	decoded, err := DecodePayload(first)
+	if err != nil || !bytes.Equal(source, decoded) {
+		t.Fatal("payload changed after scratch reuse", err)
+	}
+	state := payloadEncoders.Get().(*payloadEncoder)
+	capacity := cap(state.scratch)
+	payloadEncoders.Put(state)
+	if capacity > maxPayloadScratchBytes {
+		t.Fatalf("retained scratch capacity %d exceeds bound", capacity)
+	}
+}

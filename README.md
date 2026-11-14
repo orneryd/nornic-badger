@@ -1,6 +1,6 @@
 # NornicDB Badger development
 
-This public development fork starts from upstream Badger v4.9.6 and retains its history, Apache-2.0 license and notices. See the [storage experiment plan](PLAN.md), [development overview](NORNIC.md) and [prototype evidence](experimental/nornic/README.md). The experimental codecs do not yet change Badger's physical read path. NornicDB's [experimental integration branch](https://github.com/orneryd/NornicDB/tree/experiment/projected-badger-v1.5.0) gates new property encodings behind a default-off runtime flag.
+This public development fork starts from upstream Badger v4.9.6 and retains its history, Apache-2.0 license and notices. See the [storage experiment plan](PLAN.md), [development overview](NORNIC.md) and [prototype evidence](experimental/nornic/README.md). Experimental property and SST byte-column encodings retain whole-block reads; physical property-range I/O is not implemented. NornicDB's [experimental integration branch](https://github.com/orneryd/NornicDB/tree/experiment/projected-badger-v1.5.0) gates both encodings behind one default-off runtime flag.
 
 The upstream documentation follows; its badges describe upstream, not qualification of this development line.
 

@@ -799,13 +799,15 @@ func (t *Table) decompress(b *Block) error {
 
 	switch t.opt.Compression {
 	case options.NornicColumnar:
-		decoded, decodeErr := decompressColumnarBlock(b.data)
+		decoded, decodeErr := decompressColumnarBlockWithAllocator(b.data, func(size int) []byte {
+			dst = z.Calloc(size, "Table.DecompressColumnar")
+			return dst
+		})
 		if decodeErr != nil {
+			z.Free(dst)
 			return decodeErr
 		}
-		dst = z.Calloc(len(decoded), "Table.DecompressColumnar")
-		copy(dst, decoded)
-		b.data = dst
+		b.data = decoded
 	case options.None:
 		// Nothing to be done here.
 		return nil

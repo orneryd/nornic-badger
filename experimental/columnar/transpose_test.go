@@ -32,9 +32,20 @@ func TestTransposeRoundtrip(t *testing.T) {
 		if e != nil || !bytes.Equal(got, src) {
 			t.Fatal("roundtrip", e)
 		}
+		var destination []byte
+		got, e = RestoreWithAllocator(encoded, func(n int) []byte {
+			destination = bytes.Repeat([]byte{0xff}, n)
+			return destination
+		})
+		if e != nil || !bytes.Equal(got, src) || &got[0] != &destination[0] {
+			t.Fatal("restore did not reconstruct directly into caller storage", e)
+		}
 		for _, bad := range [][]byte{nil, encoded[:len(encoded)-1], append(bytes.Clone(encoded), 0)} {
 			if _, e := Restore(bad); e == nil {
 				t.Fatal("malformed accepted")
+			}
+			if _, e := RestoreWithAllocator(bad, func(int) []byte { t.Fatal("allocated before frame validation"); return nil }); e == nil {
+				t.Fatal("malformed accepted with allocator")
 			}
 		}
 	}
