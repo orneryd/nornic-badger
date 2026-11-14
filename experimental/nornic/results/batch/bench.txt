@@ -1,0 +1,42 @@
+goos: windows
+goarch: amd64
+pkg: github.com/dgraph-io/badger/v4/experimental/nornic
+cpu: Intel(R) Core(TM) i9-9900KF CPU @ 3.60GHz
+BenchmarkBatchComparison/constant/scalar         	   26215	     13815 ns/op	2371.83 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/scalar         	   26205	     13687 ns/op	2394.02 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/scalar         	   26049	     13762 ns/op	2381.09 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/batch          	  332197	      1089 ns/op	30082.40 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/batch          	  332492	      1096 ns/op	29894.27 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/batch          	  329245	      1115 ns/op	29381.58 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/raw            	   85728	      4169 ns/op	7860.28 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/raw            	   85444	      4182 ns/op	7834.88 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/constant/raw            	   85596	      4291 ns/op	7636.17 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/scalar      	   10000	     34389 ns/op	 952.85 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/scalar      	   10000	     34857 ns/op	 940.08 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/scalar      	   10000	     34465 ns/op	 950.75 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/batch       	   33618	     10668 ns/op	3071.61 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/batch       	   33308	     10738 ns/op	3051.70 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/batch       	   33432	     10755 ns/op	3046.85 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/raw         	   86146	      4284 ns/op	7649.13 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/raw         	   83954	      4245 ns/op	7719.33 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/small-range/raw         	   85550	      4328 ns/op	7570.80 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/scalar         	    9186	     39482 ns/op	 829.96 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/scalar         	    9205	     39342 ns/op	 832.89 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/scalar         	    9254	     39322 ns/op	 833.33 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/batch          	   33781	     10679 ns/op	3068.45 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/batch          	   33508	     10699 ns/op	3062.67 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/batch          	   33680	     10658 ns/op	3074.64 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/raw            	   86714	      4237 ns/op	7734.18 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/raw            	   85540	      4194 ns/op	7812.75 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/monotone/raw            	   85434	      4174 ns/op	7850.43 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/scalar     	   21752	     15734 ns/op	2082.61 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/scalar     	   23078	     15465 ns/op	2118.81 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/scalar     	   23341	     15436 ns/op	2122.81 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/batch      	   86548	      4118 ns/op	7957.74 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/batch      	   87697	      4129 ns/op	7935.15 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/batch      	   87236	      4120 ns/op	7952.70 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/raw        	   86470	      4195 ns/op	7810.31 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/raw        	   85089	      4155 ns/op	7886.79 MB/s	       0 B/op	       0 allocs/op
+BenchmarkBatchComparison/high-entropy/raw        	   86950	      4155 ns/op	7885.70 MB/s	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/dgraph-io/badger/v4/experimental/nornic	16.106s
