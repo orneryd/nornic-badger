@@ -28,7 +28,7 @@ The current fixture repeats a seeded random sequence across blocks with a block-
 
 ## Memory and I/O compensation
 
-Even incompressible payloads can be cheaper to query. Keep typed raw buffers instead of expanded property maps; run supported predicates directly over borrowed bytes; use bounded scratch buffers; and read selected properties or pages only. The current `ProjectItem` adapter still uses ordinary `Item.Value`: physical partial reads remain planned, not delivered.
+Even incompressible payloads can be cheaper to query. Keep typed raw buffers instead of expanded property maps; run supported predicates directly over borrowed bytes; use bounded scratch buffers; and read selected properties or pages only. The discarded NPR1 `ProjectItem` adapter used ordinary `Item.Value`; it did not establish physical partial reads. Nornic now projects through its existing typed property format.
 
 Keep compression units independently addressable and benchmark the tradeoff between metadata and excess decoding. Bound concurrent decompressions, cache admission and total scratch bytes. Avoid caching both encoded and expanded copies without measured reuse. Compress before encryption; ciphertext should not be expected to compress.
 
