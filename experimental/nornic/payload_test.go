@@ -80,3 +80,41 @@ func TestPayloadScratchOwnershipAndBound(t *testing.T) {
 		t.Fatalf("retained scratch capacity %d exceeds bound", capacity)
 	}
 }
+
+func TestDecodePayloadIntoReusesDestination(t *testing.T) {
+	source := bytes.Repeat([]byte("documentation/property/"), 4096)
+	encoded, err := EncodePayload(source, 6)
+	if err != nil {
+		t.Fatal(err)
+	}
+	dst := make([]byte, 17, len(source))
+	got, err := DecodePayloadInto(dst, encoded)
+	if err != nil || !bytes.Equal(got, source) {
+		t.Fatal("decode", err)
+	}
+	if &got[0] != &dst[:cap(dst)][0] {
+		t.Fatal("destination was not reused")
+	}
+	owned, err := DecodePayload(encoded)
+	if err != nil {
+		t.Fatal(err)
+	}
+	clear(got)
+	if !bytes.Equal(owned, source) {
+		t.Fatal("owned decode aliases caller scratch")
+	}
+	for _, size := range []int{0, 1, len(source) - 1, len(source) + 1} {
+		bad := bytes.Clone(encoded)
+		binary.LittleEndian.PutUint32(bad[1:5], uint32(size))
+		if _, err := DecodePayloadInto(dst, bad); err == nil {
+			t.Fatal("accepted wrong output size", size)
+		}
+	}
+	if _, err := DecodePayloadInto(dst, encoded[:len(encoded)-1]); err == nil {
+		t.Fatal("accepted truncated frame")
+	}
+	got, err = DecodePayloadInto(nil, encoded)
+	if err != nil || !bytes.Equal(got, source) {
+		t.Fatal("grow destination", err)
+	}
+}

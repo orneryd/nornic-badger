@@ -66,6 +66,15 @@ func EncodePayload(src []byte, framingBytes int) ([]byte, error) {
 // DecodePayload returns the exact typed bytes supplied to EncodePayload.
 // Framing and output-length checks bound allocation before decompression.
 func DecodePayload(src []byte) ([]byte, error) {
+	return DecodePayloadInto(nil, src)
+}
+
+// DecodePayloadInto decodes into dst's capacity, replacing its contents. If
+// capacity is insufficient it allocates the declared, bounded output size.
+// The returned bytes belong to the caller and may alias dst, never src. dst
+// must not overlap src. This lets a typed consumer reuse scratch until it has
+// materialized its independently owned result. Errors may modify dst.
+func DecodePayloadInto(dst, src []byte) ([]byte, error) {
 	if len(src) < 5 || src[0] != 1 {
 		return nil, ErrFormat
 	}
@@ -73,8 +82,13 @@ func DecodePayload(src []byte) ([]byte, error) {
 	if n > MaxPayloadBytes {
 		return nil, ErrFormat
 	}
+	if cap(dst) < int(n) {
+		dst = make([]byte, 0, int(n))
+	}
 	d := payloadDecoders.Get().(*zstd.Decoder)
-	out, err := d.DecodeAll(src[5:], make([]byte, 0, int(n)))
+	// Bound the decoder to the declared length even when scratch has spare
+	// capacity; malformed frames must retain the same allocation bound.
+	out, err := d.DecodeAll(src[5:], dst[:0:int(n)])
 	payloadDecoders.Put(d)
 	if err != nil {
 		return nil, err
