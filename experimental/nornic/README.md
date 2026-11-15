@@ -1,10 +1,17 @@
 # Experimental property codecs
 
-This package provides bounded, exact int64 column encoding and per-property Zstd
+This package provides bounded, exact int64 column encoding and per-property S2
 compression for NornicDB's opt-in storage branch. The consumer controls new writes
 with `NORNICDB_EXPERIMENTAL_PROPERTY_STORAGE_ENABLED`; reading stored frames remains
 supported when the flag is disabled. The physical SST block codec is owned by
 `table/columnar.go` and `experimental/columnar`, not by a per-entity record adapter.
+
+New property frames use S2 with a declared output length and CRC32C. Legacy Zstd
+property frames remain readable. `DecodePayloadInto` reuses caller-owned capacity
+without exceeding the declared size; `DecodePayload` returns independent bytes.
+SST blocks still choose their own raw, Zstd or transposed-Zstd representation.
+The consumer's [regression follow-up](https://github.com/orneryd/NornicDB/blob/experiment/projected-badger-v1.5.0/experiments/property-storage/REGRESSION-FOLLOWUP.md)
+records the separate storage, allocation and latency checks.
 
 The unused NPR1 record directory, its `ProjectItem` adapter and its sample column
 segment were removed. NPR1 cost 24 bytes per property plus a 12-byte header, never

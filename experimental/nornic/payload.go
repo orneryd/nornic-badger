@@ -3,8 +3,10 @@ package nornic
 
 import (
 	"encoding/binary"
+	"hash/crc32"
 	"sync"
 
+	"github.com/klauspost/compress/s2"
 	"github.com/klauspost/compress/zstd"
 )
 
@@ -15,19 +17,11 @@ const MaxPayloadBytes = 64 << 20
 const maxPayloadScratchBytes = 128 << 10
 
 type payloadEncoder struct {
-	encoder *zstd.Encoder
 	scratch []byte
 }
 
-var payloadEncoders = sync.Pool{New: func() any {
-	// Each property is independent. A bounded window avoids retaining an 8 MiB
-	// history per pooled encoder for predominantly small documentation values.
-	e, err := zstd.NewWriter(nil, zstd.WithEncoderConcurrency(1), zstd.WithEncoderLevel(zstd.SpeedFastest), zstd.WithWindowSize(128<<10))
-	if err != nil {
-		panic(err)
-	}
-	return &payloadEncoder{encoder: e}
-}}
+var payloadEncoders = sync.Pool{New: func() any { return new(payloadEncoder) }}
+var payloadChecksumTable = crc32.MakeTable(crc32.Castagnoli)
 var payloadDecoders = sync.Pool{New: func() any {
 	d, err := zstd.NewReader(nil, zstd.WithDecoderConcurrency(1), zstd.WithDecoderMaxMemory(MaxPayloadBytes), zstd.WithDecodeAllCapLimit(true))
 	if err != nil {
@@ -44,21 +38,22 @@ func EncodePayload(src []byte, framingBytes int) ([]byte, error) {
 		return nil, nil
 	}
 	e := payloadEncoders.Get().(*payloadEncoder)
-	if cap(e.scratch) < 5 {
-		e.scratch = make([]byte, 5, 4096)
-	}
-	out := e.encoder.EncodeAll(src, e.scratch[:5])
+	// Property reads are latency-sensitive: use the fast block codec here.
+	// Table compression remains independent, and legacy Zstd frames still read.
+	out := s2.Encode(e.scratch[:0], src)
 	if cap(out) <= maxPayloadScratchBytes {
 		e.scratch = out[:0]
 	}
-	if len(out)+framingBytes >= len(src)-len(src)/8 {
+	if len(out)+9+framingBytes >= len(src)-len(src)/8 {
 		payloadEncoders.Put(e)
 		return nil, nil
 	}
-	out[0] = 1
-	binary.LittleEndian.PutUint32(out[1:5], uint32(len(src)))
 	// The caller owns accepted bytes; no pooled buffer may escape or alias it.
-	owned := append([]byte(nil), out...)
+	owned := make([]byte, 9+len(out))
+	owned[0] = 3
+	binary.LittleEndian.PutUint32(owned[1:5], uint32(len(src)))
+	binary.LittleEndian.PutUint32(owned[5:9], crc32.Checksum(src, payloadChecksumTable))
+	copy(owned[9:], out)
 	payloadEncoders.Put(e)
 	return owned, nil
 }
@@ -75,12 +70,32 @@ func DecodePayload(src []byte) ([]byte, error) {
 // must not overlap src. This lets a typed consumer reuse scratch until it has
 // materialized its independently owned result. Errors may modify dst.
 func DecodePayloadInto(dst, src []byte) ([]byte, error) {
-	if len(src) < 5 || src[0] != 1 {
+	if len(src) < 5 || (src[0] != 1 && src[0] != 3) {
 		return nil, ErrFormat
 	}
 	n := uint64(binary.LittleEndian.Uint32(src[1:5]))
 	if n > MaxPayloadBytes {
 		return nil, ErrFormat
+	}
+	if src[0] == 3 {
+		if len(src) < 9 {
+			return nil, ErrFormat
+		}
+		decoded, err := s2.DecodedLen(src[9:])
+		if err != nil || uint64(decoded) != n {
+			return nil, ErrFormat
+		}
+		if cap(dst) < decoded {
+			dst = make([]byte, 0, decoded)
+		}
+		out, err := s2.Decode(dst[:0:decoded], src[9:])
+		if err != nil {
+			return nil, err
+		}
+		if crc32.Checksum(out, payloadChecksumTable) != binary.LittleEndian.Uint32(src[5:9]) {
+			return nil, ErrFormat
+		}
+		return out, nil
 	}
 	if cap(dst) < int(n) {
 		dst = make([]byte, 0, int(n))

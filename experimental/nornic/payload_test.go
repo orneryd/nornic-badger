@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"encoding/binary"
 	"testing"
+
+	"github.com/klauspost/compress/zstd"
 )
 
 func TestPayloadRoundtripAndRawFallback(t *testing.T) {
@@ -30,6 +32,34 @@ func TestPayloadRoundtripAndRawFallback(t *testing.T) {
 	random := docsRaw(footprintValues("random", 4096))
 	if e, err := EncodePayload(random, 6); err != nil || e != nil {
 		t.Fatal("random expanded", err)
+	}
+}
+
+func TestPayloadFastCodecAndLegacyZstd(t *testing.T) {
+	source := bytes.Repeat([]byte("documentation/property/path/"), 4096)
+	fast, err := EncodePayload(source, 6)
+	if err != nil || len(fast) < 9 || fast[0] != 3 {
+		t.Fatalf("expected fast checked frame: %v", err)
+	}
+	bad := bytes.Clone(fast)
+	bad[5] ^= 1 // checksum corruption must be reported even if the stream decodes
+	if _, err := DecodePayload(bad); err == nil {
+		t.Fatal("accepted checksum corruption")
+	}
+	encoder, err := zstd.NewWriter(nil, zstd.WithEncoderConcurrency(1))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer encoder.Close()
+	legacy := make([]byte, 5)
+	legacy[0] = 1
+	binary.LittleEndian.PutUint32(legacy[1:5], uint32(len(source)))
+	legacy = encoder.EncodeAll(source, legacy)
+	for _, encoded := range [][]byte{legacy, fast} {
+		got, err := DecodePayload(encoded)
+		if err != nil || !bytes.Equal(got, source) {
+			t.Fatal("compatible decode", err)
+		}
 	}
 }
 func TestPayloadRejectsCorruptionAndDeclaredSize(t *testing.T) {
