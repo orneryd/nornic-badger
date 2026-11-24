@@ -7,7 +7,7 @@
 Adapted from RocksDB inline skiplist.
 
 Key differences:
-- No optimization for sequential inserts (no "prev").
+- Ordered bulk writes can reuse search positions within one run.
 - No custom comparator.
 - Support overwrites. This requires care when we see the same key when inserting.
   For RocksDB or LevelDB, overwrites are implemented as a newer sequence number in the key, so
@@ -271,6 +271,25 @@ func (s *Skiplist) getHeight() int32 {
 
 // Put inserts the key-value pair.
 func (s *Skiplist) Put(key []byte, v y.ValueStruct) {
+	s.PutWithHint(key, v, nil)
+}
+
+// InsertionHint retains the search position of one ordered run in one skiplist.
+// A hint starts at its zero value and belongs to that skiplist and caller.
+type InsertionHint struct {
+	last     []byte
+	previous [maxHeight]*node
+}
+
+// PutWithHint inserts a key and value, retaining the search positions for
+// the next key. The caller keeps the previous key immutable until its next call.
+func (s *Skiplist) PutWithHint(key []byte, v y.ValueStruct, hint *InsertionHint) {
+	if hint != nil {
+		if hint.last != nil && y.CompareKeys(key, hint.last) <= 0 {
+			*hint = InsertionHint{}
+		}
+		hint.last = key
+	}
 	// Since we allow overwrite, we may not need to create a new node. We might not even need to
 	// increase the height. Let's defer these actions.
 
@@ -281,7 +300,17 @@ func (s *Skiplist) Put(key []byte, v y.ValueStruct) {
 	next[listHeight] = nil
 	for i := int(listHeight) - 1; i >= 0; i-- {
 		// Use higher level to speed up for current level.
-		prev[i], next[i] = s.findSpliceForLevel(key, prev[i+1], i)
+		before := prev[i+1]
+		if hint != nil {
+			cached := hint.previous[i]
+			if cached != nil && cached != before && (before == s.head || (cached != s.head && y.CompareKeys(cached.key(s.arena), before.key(s.arena)) > 0)) {
+				before = cached
+			}
+		}
+		prev[i], next[i] = s.findSpliceForLevel(key, before, i)
+		if hint != nil {
+			hint.previous[i] = prev[i]
+		}
 		if prev[i] == next[i] {
 			prev[i].setValue(s.arena, v)
 			return
@@ -319,6 +348,9 @@ func (s *Skiplist) Put(key []byte, v y.ValueStruct) {
 			x.tower[i].Store(nextOffset)
 			if prev[i].casNextOffset(i, nextOffset, s.arena.getNodeOffset(x)) {
 				// Managed to insert x between prev[i] and next[i]. Go to the next level.
+				if hint != nil {
+					hint.previous[i] = x
+				}
 				break
 			}
 			// CAS failed. We need to recompute prev and next.

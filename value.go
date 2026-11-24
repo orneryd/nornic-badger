@@ -697,6 +697,7 @@ func (vlog *valueLog) sortedFids() []uint32 {
 type request struct {
 	// Input values
 	Entries []*Entry
+	ordered bool
 	// Output values and wait group stuff below
 	Ptrs []valuePointer
 	Wg   sync.WaitGroup
@@ -706,6 +707,7 @@ type request struct {
 
 func (req *request) reset() {
 	req.Entries = req.Entries[:0]
+	req.ordered = false
 	req.Ptrs = req.Ptrs[:0]
 	req.Wg = sync.WaitGroup{}
 	req.Err = nil
