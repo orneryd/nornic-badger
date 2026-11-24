@@ -829,11 +829,16 @@ func (db *DB) writeToLSM(b *request) error {
 		return fmt.Errorf("Ptrs and Entries don't match: %+v", b)
 	}
 
+	var hint skl.InsertionHint
+	var cursor *skl.InsertionHint
+	if b.ordered {
+		cursor = &hint
+	}
 	for i, entry := range b.Entries {
 		var err error
 		if entry.skipVlogAndSetThreshold(db.valueThreshold()) {
 			// Will include deletion / tombstone case.
-			err = db.mt.Put(entry.Key,
+			err = db.mt.put(entry.Key,
 				y.ValueStruct{
 					Value: entry.Value,
 					// Ensure value pointer flag is removed. Otherwise, the value will fail
@@ -843,16 +848,16 @@ func (db *DB) writeToLSM(b *request) error {
 					Meta:      entry.meta &^ bitValuePointer,
 					UserMeta:  entry.UserMeta,
 					ExpiresAt: entry.ExpiresAt,
-				})
+				}, cursor)
 		} else {
 			// Write pointer to Memtable.
-			err = db.mt.Put(entry.Key,
+			err = db.mt.put(entry.Key,
 				y.ValueStruct{
 					Value:     b.Ptrs[i].Encode(),
 					Meta:      entry.meta | bitValuePointer,
 					UserMeta:  entry.UserMeta,
 					ExpiresAt: entry.ExpiresAt,
-				})
+				}, cursor)
 		}
 		if err != nil {
 			return y.Wrapf(err, "while writing to memTable")
@@ -913,7 +918,7 @@ func (db *DB) writeRequests(reqs []*request) error {
 	return nil
 }
 
-func (db *DB) sendToWriteCh(entries []*Entry) (*request, error) {
+func (db *DB) sendToWriteCh(entries []*Entry, ordered bool) (*request, error) {
 	if db.blockWrites.Load() == 1 {
 		return nil, ErrBlockedWrites
 	}
@@ -932,6 +937,7 @@ func (db *DB) sendToWriteCh(entries []*Entry) (*request, error) {
 	req := requestPool.Get().(*request)
 	req.reset()
 	req.Entries = entries
+	req.ordered = ordered
 	req.Wg.Add(1)
 	req.IncrRef()     // for db write
 	db.writeCh <- req // Handled in doWrites.
@@ -1009,7 +1015,7 @@ func (db *DB) doWrites(lc *z.Closer) {
 //
 //	Check(kv.BatchSet(entries))
 func (db *DB) batchSet(entries []*Entry) error {
-	req, err := db.sendToWriteCh(entries)
+	req, err := db.sendToWriteCh(entries, false)
 	if err != nil {
 		return err
 	}
@@ -1025,7 +1031,7 @@ func (db *DB) batchSet(entries []*Entry) error {
 //	   Check(err)
 //	}
 func (db *DB) batchSetAsync(entries []*Entry, f func(error)) error {
-	req, err := db.sendToWriteCh(entries)
+	req, err := db.sendToWriteCh(entries, false)
 	if err != nil {
 		return err
 	}
@@ -1946,7 +1952,7 @@ func (db *DB) BanNamespace(ns uint64) error {
 		Key:   key,
 		Value: nil,
 	}}
-	req, err := db.sendToWriteCh(entry)
+	req, err := db.sendToWriteCh(entry, false)
 	if err != nil {
 		return err
 	}

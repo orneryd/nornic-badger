@@ -168,6 +168,10 @@ func (mt *memTable) isFull() bool {
 }
 
 func (mt *memTable) Put(key []byte, value y.ValueStruct) error {
+	return mt.put(key, value, nil)
+}
+
+func (mt *memTable) put(key []byte, value y.ValueStruct, hint *skl.InsertionHint) error {
 	entry := &Entry{
 		Key:       key,
 		Value:     value.Value,
@@ -190,7 +194,7 @@ func (mt *memTable) Put(key []byte, value y.ValueStruct) error {
 	}
 
 	// Write to skiplist and update maxVersion encountered.
-	mt.sl.Put(key, value)
+	mt.sl.PutWithHint(key, value, hint)
 	if ts := y.ParseTs(entry.Key); ts > mt.maxVersion {
 		mt.maxVersion = ts
 	}

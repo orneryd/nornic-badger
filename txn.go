@@ -12,6 +12,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"slices"
 	"sort"
 	"strconv"
 	"sync"
@@ -237,11 +238,12 @@ func (o *oracle) doneCommit(cts uint64) {
 
 // Txn represents a Badger transaction.
 type Txn struct {
-	readTs   uint64
-	commitTs uint64
-	size     int64
-	count    int64
-	db       *DB
+	orderedWrites bool
+	readTs        uint64
+	commitTs      uint64
+	size          int64
+	count         int64
+	db            *DB
 
 	reads []uint64 // contains fingerprints of keys read.
 	// contains fingerprints of keys written. This is used for conflict detection.
@@ -579,6 +581,13 @@ func (txn *Txn) commitAndSend() (func() error, error) {
 		processEntry(e)
 	}
 
+	// Order only single-version transactions. The WAL finish marker still
+	// follows all transaction entries.
+	ordered := txn.orderedWrites && keepTogether && len(entries) >= 128
+	if ordered {
+		slices.SortFunc(entries, func(a, b *Entry) int { return y.CompareKeys(a.Key, b.Key) })
+	}
+
 	if keepTogether {
 		// CommitTs should not be zero if we're inserting transaction markers.
 		y.AssertTrue(commitTs != 0)
@@ -590,7 +599,7 @@ func (txn *Txn) commitAndSend() (func() error, error) {
 		entries = append(entries, e)
 	}
 
-	req, err := txn.db.sendToWriteCh(entries)
+	req, err := txn.db.sendToWriteCh(entries, ordered)
 	if err != nil {
 		orc.doneCommit(commitTs)
 		return nil, err
@@ -727,6 +736,13 @@ func (txn *Txn) CommitWith(cb func(error)) {
 	}
 
 	go runTxnCallback(&txnCb{user: cb, commit: commitCb})
+}
+
+// EnableOrderedWrites sorts the writes of this transaction by key before
+// commit when it has a large, single-version batch. The write pipeline can
+// then reuse skiplist search positions. It is intended for bulk loading.
+func (txn *Txn) EnableOrderedWrites() {
+	txn.orderedWrites = true
 }
 
 // ReadTs returns the read timestamp of the transaction.
